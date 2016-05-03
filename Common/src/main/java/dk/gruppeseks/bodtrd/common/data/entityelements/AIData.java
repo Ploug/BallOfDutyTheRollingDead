@@ -15,6 +15,7 @@ public class AIData
 {
     private float[] _shape;
     private Path _path;
+    private long _lastUpdate;
 
     public void setFoVShape(float[] shape)
     {
@@ -24,6 +25,16 @@ public class AIData
     public float[] getFoVShape()
     {
         return _shape;
+    }
+
+    public void setUpdateTime(long time)
+    {
+        _lastUpdate = time;
+    }
+
+    public long getUpdateTime()
+    {
+        return _lastUpdate;
     }
 
     public Path getPath()

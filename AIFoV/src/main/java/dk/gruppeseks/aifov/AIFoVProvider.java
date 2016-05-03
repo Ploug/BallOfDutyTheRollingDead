@@ -66,12 +66,8 @@ public class AIFoVProvider implements AISPI
     private Position rayCast(Entity zombie, Entity target)
     {
         ArrayList<Float> shape = new ArrayList<>();
-        double rotSteps = VISION_DEGREES / (double)RAY_COUNT; // 1.5
+        double degreesPerStep = VISION_DEGREES / (double)RAY_COUNT; // 1.5
         Vector2 orientation = zombie.get(Body.class).getOrientation();
-        if (orientation == null)
-        {
-            orientation = new Vector2(0, 1);
-        }
         Vector2 startRay = new Vector2(orientation);
         startRay.rotateDegrees(-VISION_DEGREES / 2);
 
@@ -86,7 +82,7 @@ public class AIFoVProvider implements AISPI
         boolean playerCollision = false;
         for (int i = 0; i < RAY_COUNT; i++)
         {
-            double rotAmount = rotSteps * i;
+            double rotAmount = degreesPerStep * i;
             Vector2 ray = new Vector2(startRay);
             ray.setMagnitude(VISION_DISTANCE);
             ray.rotateDegrees(rotAmount);
@@ -154,11 +150,8 @@ public class AIFoVProvider implements AISPI
         Vector2 endToStart = new Vector2(new Position(x2, y2), new Position(x1, y1));
         double rayLength = endToStart.getMagnitude();
         double radius = circleBody.getWidth() / 2;
-        if (distanceToLine < radius && startToTarget.getMagnitude() < radius + rayLength && endToTarget.getMagnitude() < radius + rayLength)
-        {
-            return true;
-        }
-        return false;
+        return ((distanceToLine < radius) && (startToTarget.getMagnitude() < (radius + rayLength)) && (endToTarget.getMagnitude() < (radius + rayLength)));
+
     }
 
 }
