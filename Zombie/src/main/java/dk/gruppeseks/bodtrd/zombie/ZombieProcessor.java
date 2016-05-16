@@ -81,7 +81,7 @@ public class ZombieProcessor implements IEntityProcessor
             if (distance >= AGGRO_RANGE)
             {
                 velocity.setMagnitude(0);
-                zombieBod.setOrientation(new Vector2(0, 1));
+                zombieBod.getOrientation().rotateDegrees(Math.random());
             }
 
             if (distance < AGGRO_RANGE)
@@ -138,6 +138,7 @@ public class ZombieProcessor implements IEntityProcessor
                 }
 
             }
+
             zombieVel.setVector(velocity);
         }
     }
