@@ -26,7 +26,7 @@ public class AIProvider implements AISPI
 {
     private boolean[][] _grid;
 
-    private final int TIME_BETWEEN_PATH_UPDATE = 300; // How many milliseconds between path update
+    private final int TIME_BETWEEN_PATH_UPDATE = 200; // How many milliseconds between path update
 
     @Override
     public Path getPath(Entity entity, Entity target, World world) throws NoPathException
@@ -51,8 +51,8 @@ public class AIProvider implements AISPI
         int startX = (int)(zombieCenter.getX() / cellSize);
         int startY = (int)(zombieCenter.getY() / cellSize);
 
-        Body targetBod = entity.get(Body.class);
-        Position targetPos = entity.get(Position.class);
+        Body targetBod = target.get(Body.class);
+        Position targetPos = target.get(Position.class);
         Position targetCenter = new Position(targetPos.getX() + targetBod.getWidth() / 2, targetPos.getY() + targetBod.getHeight() / 2);
 
         int goalX = (int)(targetCenter.getX() / cellSize);
