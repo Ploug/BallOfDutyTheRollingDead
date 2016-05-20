@@ -303,9 +303,10 @@ public class CollisionHandler
         Position centerResponding = new Position(responding.centerX, responding.centerY);
         Position centerOther = new Position(other.centerX, other.centerY);
         // Creates a vector from the respondings center to the others center.
-        Vector2 respondingToOther = new Vector2(centerResponding, centerOther);
+        Vector2 otherToResponding = new Vector2(centerOther, centerResponding);
+        otherToResponding.setMagnitude(responding.height / 2 + other.height / 2);
 
-        return new Position(other.centerX + respondingToOther.getX() - responding.width / 2, other.centerY + respondingToOther.getY() - responding.height / 2);
+        return new Position(other.centerX + otherToResponding.getX() - responding.width / 2, other.centerY + otherToResponding.getY() - responding.height / 2);
     }
 
     /**
